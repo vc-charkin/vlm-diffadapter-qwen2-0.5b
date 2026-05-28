@@ -124,16 +124,3 @@ YAML-конфигурации хранятся в `configs`. Их загружа
 | Evaluation и reports | Покрываются evaluation reports, multimodal benchmark reports, caption LLM judge reports, quality reports, visual reports, VQA evaluation, CLIP alignment и language-retention summaries. |
 | Experiment workflow | Проверяются experiment recipes, run directory creation, seed handling, batch metrics, run-summary filters, final benchmark comparison и H100-oriented recipe contracts. |
 | Deployment preflight | Проверяется M77 pod preflight contract, используемый перед крупными GPU runs. |
-
-## Сгенерированный отчетный артефакт
-
-Репозиторий включает один небольшой сгенерированный визуальный артефакт:
-
-```text
-reports/generated_sd14_fig61_prompts_seed220/
-```
-
-В каталоге находятся Stable Diffusion 1.4 prompt-grid images, contact sheet,
-JSON report и HTML index, использованные в процессе подготовки рисунка ВКР. Более крупные
-сгенерированные запуски и исторические пакеты метрик исключены, потому что это
-локальные экспериментальные артефакты, а не исходные модули проекта.
