@@ -53,8 +53,8 @@ src/          Python package source code
 tests/        Acceptance tests for the implementation contract
 ```
 
-For a detailed description of package modules, CLI commands, scripts, configs,
-and acceptance-test areas, see [`docs/MODULES.md`](docs/MODULES.md).
+Подробное описание модулей пакета, CLI-команд, сценариев, конфигураций и
+приемочных тестов приведено в [`docs/MODULES.md`](docs/MODULES.md).
 
 ## Installation
 
