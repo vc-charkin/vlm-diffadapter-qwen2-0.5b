@@ -1,0 +1,13 @@
+precision: bf16
+batch_size: 2
+grad_accumulation_steps: 1
+max_steps: 1
+learning_rates:
+  text: 0.0
+  image: 0.0002
+loss_weights:
+  lm: 1.0
+  diffusion: 1.0
+checkpoint:
+  every_steps: 1
+  output_dir: checkpoints

@@ -1,0 +1,16 @@
+run_name: h100_real_coco_datamodule_16batch_seed46
+output_root: runs
+model_config: configs/model_h100_real.yaml
+train_config: configs/train.yaml
+eval_config: configs/eval.yaml
+seed: 46
+adapter_only_checkpoint: true
+device: cuda
+manifest: data/coco2017_smoke_128/manifest.jsonl
+text_length: 8
+use_data_module: true
+data_config: configs/data.yaml
+val_fraction: 0.1
+max_train_batches: 16
+eval_split: val
+max_eval_batches: 6

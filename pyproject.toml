@@ -1,0 +1,54 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "vlm-diffadapter"
+version = "0.1.0"
+description = "Research VLM Diffusion Adapter prototype on top of Qwen2-0.5B"
+requires-python = ">=3.10"
+dependencies = [
+  "accelerate>=1.0,<2",
+  "diffusers>=0.30,<0.31",
+  "datasets>=3.0,<4",
+  "numpy",
+  "peft>=0.11,<0.12",
+  "pillow",
+  "pyyaml",
+  "rich",
+  "safetensors",
+  "torch",
+  "torchmetrics",
+  "torchvision",
+  "transformers",
+  "typer",
+]
+
+[project.optional-dependencies]
+dev = [
+  "mypy",
+  "pytest",
+  "pytest-cov",
+  "ruff",
+]
+
+[project.scripts]
+vlm-diffadapter = "vlm_diffadapter.cli:app"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.mypy]
+python_version = "3.10"
+strict = true
+warn_unused_ignores = true
+warn_return_any = true

@@ -1,0 +1,109 @@
+{
+  "kind": "stable_diffusion_v1_4_prompt_grid",
+  "source_prompt_set": "fixed COCO validation prompts used in the current VKR figure",
+  "model": "/shared-storage/hf_models/stable-diffusion-v1-4-fp16",
+  "device": "cuda",
+  "height": 512,
+  "width": 512,
+  "steps": 32,
+  "scheduler": "DDIMScheduler",
+  "guidance_scale": 7.5,
+  "prompts": [
+    {
+      "id": "384981",
+      "caption": "A group of people gathered to celebrate a birthday.",
+      "seed": 220,
+      "image": "384981_sd14_seed220.png"
+    },
+    {
+      "id": "494731",
+      "caption": "Black birds on a wood fence near the ocean.",
+      "seed": 221,
+      "image": "494731_sd14_seed221.png"
+    },
+    {
+      "id": "155604",
+      "caption": "Pizza with toppings baking in oven with steel",
+      "seed": 222,
+      "image": "155604_sd14_seed222.png"
+    },
+    {
+      "id": "310553",
+      "caption": "A man riding on the back of a motorcycle with a woman.",
+      "seed": 223,
+      "image": "310553_sd14_seed223.png"
+    },
+    {
+      "id": "179558",
+      "caption": "Two giraffes standing together in an open field zoo den",
+      "seed": 224,
+      "image": "179558_sd14_seed224.png"
+    },
+    {
+      "id": "175831",
+      "caption": "Two people on mopeds passing in front of a building.",
+      "seed": 225,
+      "image": "175831_sd14_seed225.png"
+    },
+    {
+      "id": "69946",
+      "caption": "A blue boat docked on a green lush shore.",
+      "seed": 226,
+      "image": "69946_sd14_seed226.png"
+    },
+    {
+      "id": "519055",
+      "caption": "A man throwing a baseball while people watch from chairs behind him.",
+      "seed": 227,
+      "image": "519055_sd14_seed227.png"
+    },
+    {
+      "id": "505099",
+      "caption": "a baseball player is going to swing a bat",
+      "seed": 228,
+      "image": "505099_sd14_seed228.png"
+    },
+    {
+      "id": "173704",
+      "caption": "A person standing on a street with some food.",
+      "seed": 229,
+      "image": "173704_sd14_seed229.png"
+    },
+    {
+      "id": "397773",
+      "caption": "A close up of a plate of pasta containing broccoli.",
+      "seed": 230,
+      "image": "397773_sd14_seed230.png"
+    },
+    {
+      "id": "188546",
+      "caption": "a close up of a dog with a hat ",
+      "seed": 231,
+      "image": "188546_sd14_seed231.png"
+    },
+    {
+      "id": "142592",
+      "caption": "A clock sitting in the middle of the city, in front of a building.",
+      "seed": 232,
+      "image": "142592_sd14_seed232.png"
+    },
+    {
+      "id": "463836",
+      "caption": "A man looking down with a backpack on in a house.",
+      "seed": 233,
+      "image": "463836_sd14_seed233.png"
+    },
+    {
+      "id": "109819",
+      "caption": "An elephant walks next to a bus down a busy street.",
+      "seed": 234,
+      "image": "109819_sd14_seed234.png"
+    },
+    {
+      "id": "20541",
+      "caption": "A crow approaches a cardboard pizza box on the ground and opens it",
+      "seed": 235,
+      "image": "20541_sd14_seed235.png"
+    }
+  ]
+}

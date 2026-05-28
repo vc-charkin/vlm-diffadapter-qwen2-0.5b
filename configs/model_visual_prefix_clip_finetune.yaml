@@ -1,0 +1,32 @@
+model_name: Qwen/Qwen2-0.5B
+vae_name: stabilityai/sd-vae-ft-mse
+backend: lightweight
+vae_backend: lightweight
+hidden_size: 64
+image_channels: 4
+image_size: 32
+patch_size: 2
+adapter_depth: 2
+special_tokens:
+  boi: "<|boi|>"
+  eoi: "<|eoi|>"
+freeze_text_tower: true
+enable_lora: false
+use_unet_patch_path: true
+feature_alignment:
+  enabled: false
+denoiser_backend: native
+denoiser_name:
+freeze_denoiser: true
+diffusion_schedule: linear
+pretrained_denoiser_weight: 1.0
+patch_denoiser_weight: 1.0
+spatial_denoiser_weight: 1.0
+vision_encoder:
+  enabled: true
+  backend: clip
+  model_name: openai/clip-vit-base-patch32
+  freeze: false
+visual_prefix:
+  enabled: true
+  prefix_length: 16

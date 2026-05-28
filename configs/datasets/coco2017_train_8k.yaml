@@ -1,0 +1,10 @@
+# Expanded COCO pool for larger frozen-LLM diffusion experiments.
+# Keep validation fixed by filtering out ids from data/coco2017_trainval_2k/val_manifest_64.jsonl.
+dataset_id: phiyodr/coco2017
+split: train
+output_root: data/coco2017_train_8k
+image_column: coco_url
+caption_column: captions
+id_column: image_id
+clip_score_column: null
+limit: 8192

@@ -1,0 +1,37 @@
+model_name: /shared-storage/hf_models/qwen2-0.5b
+vae_name: /shared-storage/hf_models/sd-vae-ft-mse
+backend: huggingface-qwen2-causal
+vae_backend: diffusers
+hidden_size: 64
+image_channels: 4
+image_size: 32
+patch_size: 2
+adapter_depth: 2
+special_tokens:
+  boi: "<|boi|>"
+  eoi: "<|eoi|>"
+freeze_text_tower: true
+enable_lora: false
+use_unet_patch_path: true
+feature_alignment:
+  enabled: false
+denoiser_backend: native
+denoiser_name:
+freeze_denoiser: true
+diffusion_schedule: linear
+pretrained_denoiser_weight: 1.0
+patch_denoiser_weight: 1.0
+spatial_denoiser_weight: 1.0
+vision_encoder:
+  enabled: true
+  backend: clip
+  model_name: /shared-storage/hf_models/clip-vit-base-patch32
+  freeze: true
+xfusion:
+  enabled: true
+  visual_tokens: 32
+  depth: 8
+  gated_residual: true
+  use_visual_prefix: true
+  layerwise: true
+  layerwise_layers: last

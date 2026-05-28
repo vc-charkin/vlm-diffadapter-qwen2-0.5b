@@ -1,0 +1,9 @@
+# Optional compact follow-up image-caption source.
+dataset_id: cjc/flickr30k
+split: train
+output_root: data/flickr30k_smoke_128
+image_column: image
+caption_column: caption
+id_column: null
+clip_score_column: null
+limit: 128

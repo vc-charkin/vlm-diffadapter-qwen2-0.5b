@@ -1,0 +1,9 @@
+captioning:
+  enabled: true
+image_generation:
+  enabled: true
+  sample_count: 2
+  fid_min_samples: 50
+text_retention:
+  enabled: true
+  max_drop: 0.03

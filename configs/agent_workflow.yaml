@@ -1,0 +1,12 @@
+freeze_policy:
+  acceptance_tests_frozen_after_red: true
+  modify_frozen_tests_before_green: false
+agents:
+  orchestrator: "milestones, ownership, reports"
+  test_architect: "acceptance tests, red/green reports"
+  architecture: "model contracts, routing, masks"
+  data: "manifests, fixtures, filtering, sampling"
+  training: "losses, optimizer groups, checkpoints"
+  inference: "captioning, text-to-image, CLI/API"
+  evaluation: "metrics reports"
+  qa: "frozen test execution and drift checks"

@@ -1,0 +1,24 @@
+model_name: /shared-storage/hf_models/qwen2-0.5b
+vae_name: /shared-storage/hf_models/sd-vae-ft-mse
+backend: huggingface-qwen2
+vae_backend: diffusers
+hidden_size: 64
+image_channels: 4
+image_size: 32
+patch_size: 2
+adapter_depth: 2
+special_tokens:
+  boi: "<|boi|>"
+  eoi: "<|eoi|>"
+freeze_text_tower: true
+enable_lora: false
+use_unet_patch_path: true
+feature_alignment:
+  enabled: false
+denoiser_backend: diffusers-unet2d-condition
+denoiser_name: /shared-storage/hf_models/sd15-unet-fp16
+freeze_denoiser: true
+diffusion_schedule: stable-diffusion-v1
+pretrained_denoiser_weight: 1.0
+patch_denoiser_weight: 1.0
+spatial_denoiser_weight: 1.0

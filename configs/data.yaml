@@ -1,0 +1,5 @@
+clip_threshold: 0.28
+t2i_i2t_ratio: "2:1"
+clean_i2t: true
+seed: 42
+min_caption_chars: 3
