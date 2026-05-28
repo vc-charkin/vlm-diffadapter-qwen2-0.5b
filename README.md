@@ -53,6 +53,9 @@ src/          Python package source code
 tests/        Acceptance tests for the implementation contract
 ```
 
+For a detailed description of package modules, CLI commands, scripts, configs,
+and acceptance-test areas, see [`docs/MODULES.md`](docs/MODULES.md).
+
 ## Installation
 
 Python 3.10+ is required. For local development:
