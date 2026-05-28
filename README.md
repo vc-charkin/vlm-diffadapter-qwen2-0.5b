@@ -1,64 +1,62 @@
 # VLM-DiffAdapter Qwen2-0.5B
 
-Research implementation of a multimodal adapter for Qwen2-0.5B. The project
-adds image understanding and text-to-image generation paths around a compact
-language model while keeping the main pretrained components frozen in the
-primary experiments.
+Исследовательская реализация мультимодального адаптера для Qwen2-0.5B. Проект
+добавляет к компактной языковой модели сценарии понимания изображений и
+генерации изображений по тексту. В основных экспериментах предобученные
+компоненты остаются замороженными, а обучаются только адаптерные модули.
 
-The repository contains the Python package, CLI, experiment configs, evaluation
-scripts, acceptance tests, and a small visual artifact used in the VKR text.
-Large local artifacts such as datasets, checkpoints, Hugging Face caches, and
-virtual environments are intentionally excluded from git.
+В репозиторий входят Python-пакет, CLI, конфигурации экспериментов, сценарии
+оценки и приемочные тесты. Большие локальные материалы, включая датасеты,
+контрольные точки, кэши Hugging Face и виртуальные окружения, не хранятся в git.
 
-## Results
+## Результаты
 
-The current VKR version reports the following headline metrics:
+Актуальная версия ВКР использует следующие основные метрики:
 
-| Task | Dataset | Metric |
+| Задача | Данные | Метрика |
 | --- | --- | --- |
-| Image captioning | COCO val2017, 5000 images | I2T F1 `0.681` |
-| Mixed image + instruction response | COCO val2017, 5000 images | Mixed F1 `0.692` |
-| External caption transfer | Flickr30k test, 1000 images | I2T F1 `0.594`, mixed F1 `0.617` |
-| VQA candidate ranking | VQAv2 validation | exact `0.713`, F1 `0.731`, yes/no accuracy `0.889` |
-| Text-to-image generation | 1000 fixed COCO val2017 prompts | CLIPScore `0.301`, FID `28.7` |
-| Language retention | MMLU / MMLU-Pro / GSM8K / BBH | `45.4 -> 45.3`, `14.7 -> 14.6`, `36.5 -> 36.4`, `28.4 -> 28.4` |
+| Описание изображения | COCO val2017, 5000 изображений | I2T F1 `0,681` |
+| Смешанный ответ по изображению и инструкции | COCO val2017, 5000 изображений | Mixed F1 `0,692` |
+| Перенос на внешний набор подписей | Flickr30k test, 1000 изображений | I2T F1 `0,594`, mixed F1 `0,617` |
+| Ранжирование VQA-кандидатов | VQAv2 validation | exact `0,713`, F1 `0,731`, yes/no accuracy `0,889` |
+| Генерация изображения по тексту | 1000 фиксированных запросов COCO val2017 | CLIPScore `0,301`, FID `28,7` |
+| Сохранение языковых навыков | MMLU / MMLU-Pro / GSM8K / BBH | `45,4 -> 45,3`, `14,7 -> 14,6`, `36,5 -> 36,4`, `28,4 -> 28,4` |
 
-These numbers describe the experimental setup of the VKR, not a claim of
-state-of-the-art performance. The main research result is that visual adapters
-can add a measurable multimodal signal while the Qwen2-0.5B text tower remains
-unchanged.
+Эти значения описывают экспериментальный протокол ВКР. Главный результат
+проекта состоит в том, что визуальные адаптеры добавляют измеримый
+мультимодальный сигнал, при этом текстовый блок Qwen2-0.5B остается неизменным.
 
-## Architecture
+## Архитектура
 
-- **Text tower:** Qwen2-0.5B causal language model.
-- **Visual understanding:** CLIP ViT-B/32 features are mapped into the Qwen
-  input space by a trainable visual bridge.
-- **X-Fusion branch:** a stronger trainable bridge variant for image-to-text
-  and mixed text-visual tasks.
-- **VQA mode:** candidate answers are ranked by language-model loss conditioned
-  on the image and question.
-- **Text-to-image branch:** Qwen hidden states are converted by a trainable
-  sequence adapter into Stable Diffusion-compatible conditioning.
-- **Checkpoint policy:** adapter-only checkpoints are used for the primary
-  frozen-model experiments.
+- **Текстовый блок:** каузальная языковая модель Qwen2-0.5B.
+- **Понимание изображений:** признаки CLIP ViT-B/32 переводятся в пространство
+  входов Qwen через обучаемый визуальный мост.
+- **Ветвь X-Fusion:** более сильный вариант обучаемого моста для image-to-text
+  и смешанных текстово-визуальных задач.
+- **Режим VQA:** ответы-кандидаты ранжируются по функции потерь языковой модели
+  с учетом изображения и вопроса.
+- **Ветвь text-to-image:** скрытые состояния Qwen преобразуются обучаемым
+  sequence adapter в условное представление, совместимое со Stable Diffusion.
+- **Контрольные точки:** в основных экспериментах используются контрольные
+  точки только адаптеров (`adapter-only`) для замороженной базовой модели.
 
-## Repository Layout
+## Структура репозитория
 
 ```text
-configs/      Model, dataset, training, and experiment configs
-docs/         Notes on the VKR source-of-truth metrics
-reports/      Small generated figure artifact included in git
-scripts/      Data import, training, evaluation, and reporting utilities
-src/          Python package source code
-tests/        Acceptance tests for the implementation contract
+configs/      Конфигурации модели, данных, обучения и экспериментов
+docs/         Документация по модулям и актуальным метрикам ВКР
+reports/      Небольшие материалы для иллюстрации из ВКР, включенные в git
+scripts/      Сценарии импорта данных, обучения, оценки и отчетности
+src/          Исходный код Python-пакета
+tests/        Приемочные тесты контрактов реализации
 ```
 
 Подробное описание модулей пакета, CLI-команд, сценариев, конфигураций и
 приемочных тестов приведено в [`docs/MODULES.md`](docs/MODULES.md).
 
-## Installation
+## Установка
 
-Python 3.10+ is required. For local development:
+Требуется Python 3.10 или новее. Для локальной разработки:
 
 ```bash
 python3.11 -m venv .venv
@@ -66,27 +64,28 @@ python3.11 -m venv .venv
 .venv/bin/python -m pip install -e ".[dev]"
 ```
 
-The full real-model experiments require PyTorch, Transformers, Diffusers, CLIP
-or Hugging Face model snapshots, and a CUDA GPU. Local acceptance tests use
-small fixtures and do not require downloading Qwen2 or Stable Diffusion weights.
+Полные эксперименты с реальными моделями требуют PyTorch, Transformers,
+Diffusers, CLIP или снимки моделей Hugging Face, а также CUDA GPU. Локальные
+приемочные тесты используют небольшие фикстуры и не требуют загрузки весов
+Qwen2 или Stable Diffusion.
 
-## Checks
+## Проверки
 
 ```bash
 .venv/bin/python -m pytest tests/acceptance
 .venv/bin/python -m ruff check src scripts tests
 ```
 
-## CLI Examples
+## Примеры CLI
 
-Import an image-caption dataset through a configured recipe:
+Импортировать датасет изображений и подписей по настроенному рецепту:
 
 ```bash
 .venv/bin/vlm-diffadapter import-dataset-recipe \
   --recipe configs/datasets/coco2017_smoke.yaml
 ```
 
-Run a local training smoke:
+Запустить локальный smoke-запуск обучения:
 
 ```bash
 .venv/bin/vlm-diffadapter train \
@@ -97,7 +96,7 @@ Run a local training smoke:
   --device cpu
 ```
 
-Evaluate a checkpoint:
+Оценить контрольную точку:
 
 ```bash
 .venv/bin/vlm-diffadapter eval \
@@ -108,7 +107,7 @@ Evaluate a checkpoint:
   --device cpu
 ```
 
-Generate a caption:
+Сгенерировать описание изображения:
 
 ```bash
 .venv/bin/vlm-diffadapter caption \
@@ -118,7 +117,7 @@ Generate a caption:
   --prompt "Describe the image"
 ```
 
-Generate an image from text:
+Сгенерировать изображение по тексту:
 
 ```bash
 .venv/bin/vlm-diffadapter txt2img \
@@ -131,44 +130,45 @@ Generate an image from text:
   --steps 16
 ```
 
-## Experiment Scripts
+## Экспериментальные сценарии
 
-The `scripts/` directory contains utilities used for larger VKR experiments:
+Каталог `scripts/` содержит утилиты для крупных экспериментов ВКР:
 
-- `train_visual_prefix_captioner.py` trains visual-prefix and X-Fusion caption
+- `train_visual_prefix_captioner.py` обучает visual-prefix и X-Fusion caption
   adapters.
-- `generate_multimodal_predictions.py` creates image-to-text and mixed-mode
-  prediction files.
-- `evaluate_multimodal_benchmark.py` computes token-F1 and degeneration
-  summaries.
-- `generate_vqa_predictions.py` and `evaluate_vqa_predictions.py` run the VQA
-  candidate-ranking protocol.
-- `train_clip_sequence_alignment.py` and
-  `train_sequence_diffusion_finetune.py` train the text-to-image conditioning
-  adapter.
-- `evaluate_prompt_grid_clip.py` evaluates generated prompt grids with
+- `generate_multimodal_predictions.py` создает файлы предсказаний для
+  image-to-text и mixed-mode режимов.
+- `evaluate_multimodal_benchmark.py` считает token-F1 и сводки по деградации
+  генерации.
+- `generate_vqa_predictions.py` и `evaluate_vqa_predictions.py` запускают
+  протокол ранжирования VQA-кандидатов.
+- `train_clip_sequence_alignment.py` и
+  `train_sequence_diffusion_finetune.py` обучают adapter условного
+  представления для text-to-image ветви.
+- `evaluate_prompt_grid_clip.py` оценивает сгенерированные prompt grids через
   CLIPScore.
 
-## Data And Checkpoints
+## Данные и контрольные точки
 
-The repository does not store downloaded datasets, model weights, or generated
-checkpoints. They are excluded by `.gitignore`:
+Репозиторий не хранит скачанные датасеты, веса моделей и сгенерированные
+контрольные точки. Они исключены через `.gitignore`:
 
 - `data/`
 - `checkpoints/`
 - `.hf_cache/`
 - `.venv/`
 - `runs/`
-- large `*.pt`, `*.ckpt`, and `*.safetensors` files
+- крупные файлы `*.pt`, `*.ckpt` и `*.safetensors`
 
-Dataset manifests can be recreated with the configs in `configs/datasets/`.
-Real-model runs should use adapter-only checkpoints unless a full checkpoint is
-explicitly needed.
+Манифесты датасетов можно пересоздать конфигурациями из `configs/datasets/`.
+Для запусков с реальными моделями следует использовать контрольные точки только
+адаптеров (`adapter-only`), если полная контрольная точка не нужна явно.
 
-## Limitations
+## Ограничения
 
-This is a research prototype. Captioning and VQA quality are useful for the VKR
-experiments but should be revalidated before use in an applied system. The
-text-to-image branch demonstrates a working Qwen-to-diffusion adapter with
-measurable CLIPScore and FID, while leaving substantial room for stronger
-conditioning, larger training sets, and improved checkpoint selection.
+Это исследовательский прототип. Качество генерации подписей и VQA подходит для
+экспериментов ВКР, но перед применением в прикладной системе его нужно
+проверять отдельно. Ветвь text-to-image демонстрирует рабочее сопряжение Qwen и
+диффузионного адаптера с измеримыми CLIPScore и FID; дальнейшее улучшение
+требует более сильного условного представления, большего обучающего набора и
+более строгого выбора контрольных точек.
